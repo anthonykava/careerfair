@@ -343,7 +343,7 @@ else
 			// searching logs for certain strings is rewarded with points
 			if(isset($_REQUEST['screen']) && $_REQUEST['screen']==='step4.logs' && $_SESSION['step4.logs.target']===0)
 			{
-				if(preg_match('/hack|10:12|deface|user|pass|edit|super|admin|jump|tool|15:12|70\.58/i',$_REQUEST['q']))
+				if(preg_match('/hack|10:12|deface|user|pass|edit|super|admin|jump|tool|15:12|70\.58/i',urldecode($_REQUEST['q'])))
 				{
 					echo "<script>window.score++;</script>\n";
 					$_SESSION['score']+=2;
@@ -748,7 +748,7 @@ elseif($_REQUEST['screen']==='step4.logs')
 <h3>Log Search: Who's in Your Server?</h3>
 <form>
 	<input type="hidden" name="screen" value="step4.logs" />
-	<input style="width:600px;" class="searchText" type="text" name="q" value="<?php echo $_REQUEST['q']?>" />&nbsp;<input class="searchButton" type="submit" value="Search" />&nbsp;<input class="searchButton transition" type="button" onClick="menuFunction('step4.logs');" value="Show All" /><br />
+	<input style="width:600px;" class="searchText" type="text" name="q" value="<?php echo preg_replace('/[^\w\d\s\.,<>!@#\$%^\&\*\(\)-_=+:;\/]/','',$_REQUEST['q']) ?>" />&nbsp;<input class="searchButton" type="submit" value="Search" />&nbsp;<input class="searchButton transition" type="button" onClick="menuFunction('step4.logs');" value="Show All" /><br />
 </form>
 
 <br />
@@ -764,7 +764,7 @@ elseif($_REQUEST['screen']==='step4.logs')
 		$hits=0;
 		foreach(preg_split('/[\r\n]+/',$log) as $line)
 		{
-			if(preg_match('/\Q'.$_REQUEST['q'].'\E/i',$line))	// added quoting and a bit of a sanit
+			if(preg_match('/\Q'.preg_quote(substr(preg_replace('/[^\x20-\x7e]/','',$_REQUEST['q']),0,128)).'\E/i',$line))	// kludge sanit
 			{
 				echo $line."\n";
 				$hits++;
@@ -806,7 +806,7 @@ elseif($_REQUEST['screen']==='step5.whois')
 <h3>IP WHOIS SEARCH: See Who Owns an IP</h3>
 <form>
 	<input type="hidden" name="screen" value="step5.whois" />
-	<input style="width:600px;" class="searchText" type="text" name="q" value="<?php echo $_REQUEST['q']?>" />&nbsp;<input class="searchButton" type="submit" value="Search" /><br />
+	<input style="width:600px;" class="searchText" type="text" name="q" value="<?php echo preg_replace('/[^\d\.]/','',$_REQUEST['q']) ?>" />&nbsp;<input class="searchButton" type="submit" value="Search" /><br />
 </form>
 
 <br />
@@ -815,14 +815,14 @@ elseif($_REQUEST['screen']==='step5.whois')
 <?php
 	if(!isset($_REQUEST['q']))
 	{
-		echo "Please enter an IP address for which to search.\n";
+		echo "Please enter an IPv4 address for which to search.\n";
 	}
 	else
 	{
-		// Only do a WHOIS on a dotted-quad IP address (for simplicity and safety)
+		// Only do a WHOIS on a dotted-quad IPv4 address (for simplicity and safety)
 		if(preg_match('/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/',$_REQUEST['q'],$matches))
 		{
-			$safeIp=$matches[1];
+			$safeIp=preg_replace('/[^\d\.]/','',$matches[1]);
 			$whoisKey='whois.'.$safeIp;
 			if(isset($_SESSION[$whoisKey]))											// show cached WHOIS data if we have it
 			{
@@ -838,7 +838,7 @@ elseif($_REQUEST['screen']==='step5.whois')
 		}
 		else
 		{
-			echo "Malformed query.  Please enter an IP address for which to search.\n";
+			echo "Malformed query.  Please enter an IPv4 address for which to search.\n";
 		}
 	}
 ?>
