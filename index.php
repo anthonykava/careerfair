@@ -65,7 +65,8 @@
  */
 
 // Change for WHOIS look-up command location
-$cmd_whois='/bin/whois';
+$cmd_whois='/usr/bin/whois';							// Debian / Ubuntu / Newer
+if(!file_exists($cmd_whois)) $cmd_whois='/bin/whois';	// CentOS / Older fallback -- should check $PATH instead
 
 // Start a PHP session
 session_start();
