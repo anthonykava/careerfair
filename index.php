@@ -763,7 +763,7 @@ elseif($_REQUEST['screen']==='step4.logs')
 		$hits=0;
 		foreach(preg_split('/[\r\n]+/',$log) as $line)
 		{
-			if(preg_match('/\Q'.preg_replace('/[\\\/]/','',$_REQUEST['q']).'\E/i',$line))	// added quoting and a bit of a sanit
+			if(preg_match('/\Q'.$_REQUEST['q'].'\E/i',$line))	// added quoting and a bit of a sanit
 			{
 				echo $line."\n";
 				$hits++;
