@@ -108,7 +108,7 @@ if(isset($_REQUEST['screen']) && $_REQUEST['screen']==='step0.visit')
 		?>
 <html>
 	<head>
-		<title>Jumping in Business Apparel, Inc.</title>
+		<title>Cool Business People in Cafes, Inc.</title>
 		<style>
 			body { background-color:#fff; color:#000; font-family:Helvetica,Verdana,Arial; text-align:center; }
 			.menuButton { font-family:Helvetica,Verdana,Arial; border:4px solid #0f0; width:500px; font-size:36px; padding:16px; margin:0px; background:#dadada; color:#000; border-radius:20px; }
@@ -124,7 +124,7 @@ if(isset($_REQUEST['screen']) && $_REQUEST['screen']==='step0.visit')
 	</head>
 	<body>
 		<div align="center">
-			<img src="good.jpg" width=1280 height=665 alt='Jumping in Business Apparel, Inc. -- We sell things, in theory.' />
+			<img src="good.jpg" width=1280 height=665 alt='Cool Business People in Cafes, Inc. -- We sell things, in theory.' />
 			<!-- Last edit by user 'tony' on 2016-04-02 19:21:29 UTC using 'Mozilla/5.0' browser -->
 		</div>
 
@@ -146,7 +146,7 @@ if(isset($_REQUEST['screen']) && $_REQUEST['screen']==='step0.visit')
 		?>
 <html>
 	<head>
-		<title>LOSERS in Business Apparel, Inc.</title>
+		<title>DORKS in Cafes, Inc.</title>
 		<style>
 			body { background-color:#fff; color:#000; font-family:Helvetica,Verdana,Arial; text-align:center; }
 			.menuButton { font-family:Helvetica,Verdana,Arial; border:4px solid #0f0; width:500px; font-size:36px; padding:16px; margin:0px; background:#dadada; color:#000; border-radius:20px; }
@@ -162,7 +162,7 @@ if(isset($_REQUEST['screen']) && $_REQUEST['screen']==='step0.visit')
 	</head>
 	<body>
 		<div align="center">
-			<img src="defaced.jpg" width=1280 height=665 alt='LOSERS in Business Apparel, Inc. -- Doom on you!' />
+			<img src="defaced.jpg" width=1280 height=665 alt='DORKS in Cafes, Inc. -- Doom on you!' />
 			<!-- Last edit by user 'superadmin' on 2016-04-12 15:12:32 UTC using 'DefacementToolkit/1.0' browser -->
 		</div>
 
